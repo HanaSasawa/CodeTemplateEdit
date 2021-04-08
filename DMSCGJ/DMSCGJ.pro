@@ -13,8 +13,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        dmscgj.cpp
+        dmscgj.cpp \
+        replace.cpp
 
-HEADERS  += dmscgj.h
+HEADERS  += dmscgj.h \
+    replace.h
 
 FORMS    += dmscgj.ui

@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+#include <QStandardItem>
+#include <QFileDialog>
+
 namespace Ui {
 class DMSCGJ;
 }
@@ -19,6 +22,17 @@ private:
     Ui::DMSCGJ *ui;
 
     void initMenubar();
+
+private slots:
+    void openFile();
+    void openFiles(QString path, QStandardItem* temp);
+
+    void saveFile();
+
+    void showFile(const QModelIndex &index);
+
+    void showValue();
+
 };
 
 #endif // DMSCGJ_H

@@ -34,7 +34,7 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
-        <widget class="QTableView" name="tableView_filesView"/>
+        <widget class="QTreeView" name="treeView_filesView"/>
        </item>
       </layout>
      </widget>
@@ -68,9 +68,9 @@
       <property name="title">
        <string>变量定义</string>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_key_value"/>
+        <widget class="QTableView" name="tableView_key_value"/>
        </item>
       </layout>
      </widget>
