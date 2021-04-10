@@ -21,17 +21,36 @@ public:
 private:
     Ui::DMSCGJ *ui;
 
+    QString t_currentFileName;
+
+    QString t_content;
+
+    QStringList t_keyValueList;
+
+    QStringList t_valueList;
+
+    QStandardItemModel *model_key_value = new QStandardItemModel(this);
+
     void initMenubar();
+    void initValue();
+
+    void keyValueList(QStringList list);
+
+    void addKeyValue(QStringList list);
+    void addKeyValues(QStringList list);
+
+    void getValue();
+
+    void readFile(QString path);
 
 private slots:
     void openFile();
     void openFiles(QString path, QStandardItem* temp);
 
     void saveFile();
+    void saveFiles(QString path, QString dirName);
 
     void showFile(const QModelIndex &index);
-
-    void showValue();
 
 };
 

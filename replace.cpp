@@ -7,7 +7,6 @@ Replace::Replace(QString content)
     m_content = content;
 }
 
-
 /**
  * @brief 判断关键字是否有效
  * @param templateName
@@ -64,6 +63,27 @@ QString Replace::replaceTemplate()
     for(int i=0;i<list.size();++i)
     {
         content = m_content.replace("$("+list.at(i)+")","replaced");      //替换内容中那个的关键字
+
+    }
+    return content;
+}
+
+/**
+ * @brief 对获取内容的关键字进行替换
+ */
+QString Replace::replaceTemplates(QStringList valueList)
+{
+    QStringList list = currTemplate();      //获取关键字的列表
+    QString content;
+    qDebug()<< list;
+
+    for(int i=0;i<list.size() && i<valueList.size();++i)
+    {
+        if(valueList.at(i) == NULL)
+        {
+            continue;
+        }
+        content = m_content.replace("$("+list.at(i)+")",valueList.at(i));      //替换内容中那个的关键字
 
     }
     return content;
