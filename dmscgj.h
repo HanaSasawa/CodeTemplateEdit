@@ -4,7 +4,6 @@
 #include <QMainWindow>
 
 #include <QStandardItem>
-#include <QFileDialog>
 
 namespace Ui {
 class DMSCGJ;
@@ -21,25 +20,23 @@ public:
 private:
     Ui::DMSCGJ *ui;
 
-    QString t_currentFileName;
+    QString t_currentDirName;       //当前打开文件夹目录
+    QString t_content;              //当前打开文件内容
 
-    QString t_content;
+    QStringList t_keyList;          //当前key值表
+    QStringList t_valueList;        //当前value值表
 
-    QStringList t_keyValueList;
-
-    QStringList t_valueList;
-
-    QStandardItemModel *model_key_value = new QStandardItemModel(this);
+    QStandardItemModel *model_key_value = new QStandardItemModel(this);   //当前显示key_value表
 
     void initMenubar();
     void initValue();
 
-    void keyValueList(QStringList list);
+    void correctKeyList(QStringList list);
 
-    void addKeyValue(QStringList list);
+    void addKeyValue(QStringList list);       //用于显示当前打开文件的key值，未使用
     void addKeyValues(QStringList list);
 
-    void getValue();
+    void setValueList();
 
     void readFile(QString path);
 

@@ -52,7 +52,7 @@ QStringList Replace::currTemplate()
 }
 
 /**
- * @brief 对获取内容的关键字进行替换
+ * @brief 对获取内容的关键字进行替换，未使用
  */
 QString Replace::replaceTemplate()
 {
@@ -69,7 +69,7 @@ QString Replace::replaceTemplate()
 }
 
 /**
- * @brief 对获取内容的关键字进行替换
+ * @brief 对获取内容的关键字，与其对应替换值进行替换的方法
  */
 QString Replace::replaceTemplates(QStringList valueList)
 {
@@ -79,11 +79,11 @@ QString Replace::replaceTemplates(QStringList valueList)
 
     for(int i=0;i<list.size() && i<valueList.size();++i)
     {
-        if(valueList.at(i) == NULL)
+        if(valueList.at(i) == NULL) //替换值为空，则不替换
         {
             continue;
         }
-        content = m_content.replace("$("+list.at(i)+")",valueList.at(i));      //替换内容中那个的关键字
+        content = m_content.replace("$("+list.at(i)+")",valueList.at(i));      //对应的替换值，替换内容中那个的关键字
 
     }
     return content;
