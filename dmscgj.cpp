@@ -117,19 +117,6 @@ void DMSCGJ::addKeyValues(QStringList list)
 }
 
 /**
- * @brief DMSCGJ::setValueList  从输入表格中获取相对应key值的value值
- */
-void DMSCGJ::setValueList()
-{
-    //    qDebug()<<model_key_value->data(model_key_value->index(0,1)).toString();
-    //    qDebug()<<model_key_value->rowCount();
-    for(int i = 0; i < model_key_value->rowCount(); i++)
-    {
-        t_valueList.append(model_key_value->data(model_key_value->index(i,1)).toString());
-    }
-}
-
-/**
  * @brief DMSCGJ::readFile  读取当前点击文件的内容
  * @param path 当前点击文件路径
  */
@@ -161,6 +148,19 @@ void DMSCGJ::readFile(QString path)
     //        }
 
     file.close();
+}
+
+/**
+ * @brief DMSCGJ::setValueList  从输入表格中获取相对应key值的value值
+ */
+void DMSCGJ::setValueList()
+{
+    //    qDebug()<<model_key_value->data(model_key_value->index(0,1)).toString();
+    //    qDebug()<<model_key_value->rowCount();
+    for(int i = 0; i < model_key_value->rowCount(); i++)
+    {
+        t_valueList.append(model_key_value->data(model_key_value->index(i,1)).toString());
+    }
 }
 
 /**
@@ -288,13 +288,22 @@ void DMSCGJ::openFiles(QString path, QStandardItem*temp)
  */
 void DMSCGJ::saveFile()
 {
-    QString saveFileName = QFileDialog::getExistingDirectory();
-    if(saveFileName == NULL)  //未选择目录操作
+    t_valueList.clear();
+    setValueList();
+
+//    if(t_valueList.size() == 0)  //设置保存按钮后使用
+//    {
+//        QMessageBox::warning(this, tr("My Application"),
+//                             tr("values aren't saved!"),
+//                             QMessageBox::Ok);
+//        return;
+//    }
+
+    QString saveDirName = QFileDialog::getExistingDirectory();
+    if(saveDirName == NULL)  //未选择目录操作
     {
         return;
     }
-
-    setValueList();
 
     QDir dir(t_currentDirName);
 
@@ -314,7 +323,7 @@ void DMSCGJ::saveFile()
 
         if (info.isDir())
         {
-            saveFiles(info.filePath(), saveFileName); //递归
+            saveFiles(info.filePath(), saveDirName); //递归
         }
         else
         {
@@ -329,7 +338,7 @@ void DMSCGJ::saveFile()
             }
 
             //写入文件
-            QString filePath = QString("%1/%2").arg(saveFileName).arg(info.fileName());
+            QString filePath = QString("%1/%2").arg(saveDirName).arg(info.fileName());
             QFile fileWrite(filePath);
             if (!fileWrite.open(QIODevice::WriteOnly | QIODevice::Text))
             {

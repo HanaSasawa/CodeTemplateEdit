@@ -36,11 +36,11 @@ private:
     void addKeyValue(QStringList list);       //用于显示当前打开文件的key值，未使用
     void addKeyValues(QStringList list);
 
-    void setValueList();
-
     void readFile(QString path);
 
 private slots:
+    void setValueList();
+
     void openFile();
     void openFiles(QString path, QStandardItem* temp);
 
